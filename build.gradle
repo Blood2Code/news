@@ -1,0 +1,46 @@
+plugins {
+    id 'org.springframework.boot' version '3.1.4'
+    id 'io.spring.dependency-management' version '1.1.0'
+    id 'java'
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.1.0'
+}
+
+group = 'org.task'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'mysql:mysql-connector-java:8.0.32' // Ensure this is the right version for your MySQL
+    implementation 'org.jsoup:jsoup:1.15.3' // HTML parsing library for web scraping
+
+    // JavaFX dependencies
+    implementation 'org.openjfx:javafx-controls:19.0.0'
+    implementation 'org.openjfx:javafx-fxml:19.0.0'
+
+    // Optional for Spring Boot testing
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+application {
+    mainClass = 'com.task.news.NewsApplication'
+    applicationDefaultJvmArgs = [
+            '--module-path', '/path/to/javafx-sdk-19/lib',
+            '--add-modules', 'javafx.controls,javafx.fxml'
+    ]
+}
+
+javafx {
+    version = "19"
+    modules = ['javafx.controls', 'javafx.fxml']
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
