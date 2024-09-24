@@ -135,6 +135,19 @@ public class NewsApp extends Application {
         }
     }
 
+    private void display(Label headlineLabel, Label descriptionLabel, Label dateTime, ResponseDto<List<Map<String, Object>>> responseDto) {
+        for (Map<String, Object> newsData : responseDto.getData()) {
+            NewsDto newsDto = new NewsDto();
+
+            newsDto.setHeadline((String) newsData.get("headline"));
+            newsDto.setDescription((String) newsData.get("description"));
+            newsDto.setPublicationTime(LocalDateTime.parse((String) newsData.get("publicationTime")));
+
+            newsList.add(newsDto);
+        }
+        displayNews(headlineLabel, descriptionLabel, dateTime);
+    }
+
     /**
      * Method to get previous news
      * @param headline
