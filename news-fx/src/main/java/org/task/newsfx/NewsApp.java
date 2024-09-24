@@ -82,15 +82,7 @@ public class NewsApp extends Application {
 
                 if (responseDto.getSuccess() && !responseDto.getData().isEmpty()) {
                     newsList = new ArrayList<>();
-                    for (Map<String, Object> newsData : responseDto.getData()) {
-                        NewsDto newsDto = new NewsDto();
-                        newsDto.setHeadline((String) newsData.get("headline"));
-                        newsDto.setDescription((String) newsData.get("description"));
-                        newsDto.setPublicationTime(LocalDateTime.parse((String) newsData.get("publicationTime")));
-
-                        newsList.add(newsDto);
-                    }
-                    displayNews(headlineLabel, descriptionLabel, dateTime);
+                    display(headlineLabel, descriptionLabel, dateTime, responseDto);
                 } else {
                     headlineLabel.setText("There is no new news for the selected period.");
                     descriptionLabel.setText("");
