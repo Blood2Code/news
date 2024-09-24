@@ -122,17 +122,7 @@ public class NewsApp extends Application {
                 ResponseDto<List<Map<String, Object>>> responseDto = objectMapper.readValue(responseBody, new TypeReference<ResponseDto<List<Map<String, Object>>>>() {});
 
                 if (responseDto.getSuccess()) {
-                    newsList = new ArrayList<>();
-                    for (Map<String, Object> newsData : responseDto.getData()) {
-                        NewsDto newsDto = new NewsDto();
-
-                        newsDto.setHeadline((String) newsData.get("headline"));
-                        newsDto.setDescription((String) newsData.get("description"));
-                        newsDto.setPublicationTime(LocalDateTime.parse((String) newsData.get("publicationTime")));
-
-                        newsList.add(newsDto);
-                    }
-                    displayNews(headlineLabel, descriptionLabel, dateTime);
+                    display(headlineLabel, descriptionLabel, dateTime, responseDto);
                 } else {
                     System.out.println("Error fetching news or empty response: " + responseDto.getMessage());
                 }
