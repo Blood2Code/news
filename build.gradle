@@ -17,8 +17,7 @@ repositories {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    implementation 'mysql:mysql-connector-java:8.0.32' // Ensure this is the right version for your MySQL
-    implementation 'org.jsoup:jsoup:1.15.3' // HTML parsing library for web scraping
+    implementation 'mysql:mysql-connector-java:8.0.32'
 
     // JavaFX dependencies
     implementation 'org.openjfx:javafx-controls:19.0.0'
