@@ -76,9 +76,9 @@ public class NewsApp extends Application {
             if (response.statusCode() == 200) {
                 String responseBody = response.body();
 
-                // Parse JSON using a JSON parsing library (e.g., Jackson)
                 ObjectMapper objectMapper = new ObjectMapper();
-                ResponseDto<List<Map<String, Object>>> responseDto = objectMapper.readValue(responseBody, new TypeReference<ResponseDto<List<Map<String, Object>>>>() {});
+                ResponseDto<List<Map<String, Object>>> responseDto = objectMapper.readValue(responseBody, new TypeReference<>() {
+                });
 
                 if (responseDto.getSuccess() && !responseDto.getData().isEmpty()) {
                     newsList = new ArrayList<>();
